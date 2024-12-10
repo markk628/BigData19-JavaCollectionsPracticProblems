@@ -2,6 +2,17 @@ package CollectionPracticeProblems;
 
 import java.util.Scanner;
 
+/**
+ * @packageName : CollectionPracticeProblems
+ * @fileNmae	: Student.java
+ * @author		: mark
+ * @date		: 2024.12.10
+ * @description : 컬렉션 실습문제 5랑 7번에 쓸 클래스
+ * ===========================================================
+ * DATE				AUTHOR				NOTE
+ * -----------------------------------------------------------
+ * 2024.12.10		MARK KIM		FIRST CREATED
+ */
 public class Student {
 	private Scanner scanner;
 	private String name;

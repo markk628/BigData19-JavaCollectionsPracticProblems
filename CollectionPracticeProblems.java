@@ -8,6 +8,17 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
 
+/**
+ * @packageName : CollectionPracticeProblems
+ * @fileNmae	: CollectionPracticeProblems.java
+ * @author		: mark
+ * @date		: 2024.12.10
+ * @description : 컬렉션 실습문제
+ * ===========================================================
+ * DATE				AUTHOR				NOTE
+ * -----------------------------------------------------------
+ * 2024.12.10		MARK KIM		FIRST CREATED
+ */
 public class CollectionPracticeProblems {
 	private Scanner scanner;
 
@@ -81,12 +92,13 @@ public class CollectionPracticeProblems {
 	}
 
 	// 입력한 점수가 "A", "B", "C", "D", "F"일때까지 실행되는 재귀 method
-	private String handleNonGradeStringError() {
+	private String handleNonGradeStringError(int number) {
 		try {
+			System.out.print("Grade " + number + ": ");
 			return returnStringIfIsAGrade(this.scanner.nextLine());
 		} catch (NotALetterGradeException e) {
 			System.out.println(e.getMessage());
-			return handleNonGradeStringError();
+			return handleNonGradeStringError(number);
 		}
 	}
 
@@ -256,8 +268,7 @@ public class CollectionPracticeProblems {
 		double sumOfGPAs = 0;
 		// 6번 반복하면서 letterGradesArrayList에 입력한 점수를 저장
 		for (int i = 0; i < 6; i++) {
-			System.out.print("Grade " + (i + 1) + ": ");
-			letterGrade = handleNonGradeStringError();
+			letterGrade = handleNonGradeStringError(i + 1);
 			letterGradesArrayList.add(letterGrade);
 		}
 		// letterGradesArrayList에 저장된 정수 개수만큼 반복하면서 점수를 GPA로 변환한후 변환된 점수를 sumOfGPAs에 더한다
@@ -381,7 +392,7 @@ public class CollectionPracticeProblems {
 		String cityName;
 
 		// 4번 반복하면서 location에 Location class를 대입하고 location.city와 location을 cities에 저장
-		System.out.print("Enter the name of the city to look up: ");
+		System.out.println("Enter the name of the city to look up");
 		for (int i = 0; i < 4; i++) {
 			location = createLocation(i + 1);
 			cities.put(location.getCity(), location);
@@ -459,13 +470,11 @@ public class CollectionPracticeProblems {
 		String customerName = "";
 		// 고객의 점수를 대입받을 정수 변수
 		int customerScore = 0;
-		// 고객의 이름과 점수 문자열의 체재가 맞는지 여부하는 불린 변수
-		boolean didEnterCorrectFormat = false;
 
 		System.out.println("8.");
 		while (true) {
 			// didEnterCorrectFormat가 false면
-			while (!didEnterCorrectFormat) {
+			while (true) {
 				// customerNameAndScore에 고객의 이름과 점수를 대입
 				System.out.print("Enter customenr's name and score (ex Mark 30): ");
 				customerNameAndScore = this.scanner.nextLine();
@@ -476,30 +485,32 @@ public class CollectionPracticeProblems {
 				// customerName이 "quit"면 프로그램 종료
 				if (customerName.toLowerCase().equals("quit")) {
 					System.out.println("Terminating program");
-					System.exit(0);
+					break;
 				}
 				// customerNameAndScoreList[0] (점수)가 정수가아니면 예외처리
 				try {
 					// customerNameAndScoreList[0] (점수)가 정수면 didEnterCorrectFormat에 true 대입
 					customerScore = Integer.parseInt(customerNameAndScoreList[1]);
-					didEnterCorrectFormat = true;
+					break;
 				} catch (NumberFormatException e) {
 					System.out.println("Enter a number for the score");
 				}
 			}
-			// didEnterCorrectFormat에 false대입 (중첩 while반복문에 있는 코드가 다시 실행될수있게)
-			didEnterCorrectFormat = false;
 
-			// 고객이 customers에 없으면 이름과 점수를 customers저장
-			if (customers.get(customerName) == null) {
-				customers.put(customerName, customerScore);
-				// 고객이 customers에 있으면 점수에 새로운 점수를 더한다
+			if (!customerName.toLowerCase().equals("quit")) {
+				// 고객이 customers에 없으면 이름과 점수를 customers저장
+				if (customers.get(customerName) == null) {
+					customers.put(customerName, customerScore);
+					// 고객이 customers에 있으면 점수에 새로운 점수를 더한다
+				} else {
+					customers.put(customerName, customers.get(customerName) + customerScore);
+				}
+				// 고객들 출력
+				customers.entrySet().stream().forEach(c -> System.out.print("(" + c.getKey() + "," + c.getValue() + ")"));
+				System.out.println();
 			} else {
-				customers.put(customerName, customers.get(customerName) + customerScore);
+				break;
 			}
-			// 고객들 출력
-			customers.entrySet().stream().forEach(c -> System.out.print("(" + c.getKey() + "," + c.getValue() + ")"));
-			System.out.println();
 		}
 	}
 
