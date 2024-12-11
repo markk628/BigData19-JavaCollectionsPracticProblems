@@ -362,7 +362,7 @@ public class CollectionPracticeProblems {
 			students.add(createStudent(i + 1, false));
 		}
 		// 모든 학생 정보를 출력
-		students.stream().forEach(
+		students.forEach(
 				student -> System.out.println(student.getName() + ", " + student.getConcentration() + ", " + student.getGrade() + ", " + student.getGPA())
 		);
 		
@@ -427,7 +427,7 @@ public class CollectionPracticeProblems {
 		// 학생을 반복하면서 만들때 대입받을 변수
 		Student student;
 		// 장학생 이름들을 합해서 출력할 문자열 변수
-		String studentsQualifiedForScholarshiptString = "Students ";
+		String studentsQualifiedForScholarship = "Students ";
 		// 장학생 선발 기준을 대입받을 변수
 		double minimumGPA;
 
@@ -448,13 +448,11 @@ public class CollectionPracticeProblems {
 			// registeredStudents의 gpa가 minimumGPA이상이면
 			// studentsQualifiedForScholarshiptString에 이름을 더한다
 			if (gpa >= minimumGPA) {
-				studentsQualifiedForScholarshiptString += studentsQualifiedForScholarshiptString.equals("Students ")
-						? name
-						: ", " + name;
+				studentsQualifiedForScholarship += studentsQualifiedForScholarship.equals("Students ") ? name : ", " + name;
 			}
 		}
 		// 장학생들의 이름 반환
-		return studentsQualifiedForScholarshiptString + " are qualified for a scholarship";
+		return studentsQualifiedForScholarship + " are qualified for a scholarship";
 	}
 
 	// 8. 고객의 이름과 포인트 점수를 관리하는 프로그램을 해시맵을 이용하여 작성하라. 프로그램은 고객의 이름과 포인트를 함께 저장 관리하는데,
@@ -506,7 +504,7 @@ public class CollectionPracticeProblems {
 					customers.put(customerName, customers.get(customerName) + customerScore);
 				}
 				// 고객들 출력
-				customers.entrySet().stream().forEach(c -> System.out.print("(" + c.getKey() + "," + c.getValue() + ")"));
+				customers.forEach((key, value) -> System.out.print("(" + key + "," + value + ")"));
 				System.out.println();
 			} else {
 				break;
