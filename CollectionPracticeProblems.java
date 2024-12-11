@@ -105,9 +105,7 @@ public class CollectionPracticeProblems {
 	// countryAndPopulation에 ","없거나 "quit"가 아니면 오류를 던지는 method
 	private String returnCountryAndPopulationIfFormatIsCorrect(String countryAndPopulation)
 			throws WrongFormatException {
-		if (countryAndPopulation.contains(",")) {
-			return countryAndPopulation;
-		} else if (countryAndPopulation.equals("quit")) {
+		if (countryAndPopulation.contains(",") || countryAndPopulation.equals("quit")) {
 			return countryAndPopulation;
 		}
 		throw new WrongFormatException("Follow format when inputting country and population ex. (Korea, 1)");
