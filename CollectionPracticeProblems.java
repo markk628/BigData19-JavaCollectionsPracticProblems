@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @packageName : CollectionPracticeProblems
@@ -206,7 +207,7 @@ public class CollectionPracticeProblems {
 		// 입력한 정수를 대입받을 정수형 변수
 		int inputNumber;
 		// 가장 큰정수를 대입받을 정수형 변수
-		int biggestNumber = 0;
+		AtomicInteger biggestNumber = new AtomicInteger(0);
 		// 입력한 정수들을 저장할 Vector형 변수
 		Vector<Integer> numbers = new Vector<>();
 
@@ -222,14 +223,14 @@ public class CollectionPracticeProblems {
 			numbers.add(inputNumber);
 		} while (true);
 		// numbers에 있는 정수들을 하나하나씩 number에 반복하면서 대입
-		for (int number : numbers) {
-			// number가 biggestNumber보다 크면 biggestNumber에 number대입
-			if (number > biggestNumber) {
-				biggestNumber = number;
+		// number가 biggestNumber보다 크면 biggestNumber에 number대입
+		numbers.forEach(number -> {
+			if (biggestNumber.get() < number) {
+				biggestNumber.set(number);
 			}
-		}
+		});
 		// biggestNumber 반환
-		return biggestNumber;
+		return biggestNumber.get();
 	}
 
 	int problem1v2() {
@@ -360,9 +361,7 @@ public class CollectionPracticeProblems {
 			students.add(this.createStudent(i + 1, false));
 		}
 		// 모든 학생 정보를 출력
-		students.forEach(
-				student -> System.out.println(student.getName() + ", " + student.getConcentration() + ", " + student.getGrade() + ", " + student.getGPA())
-		);
+		students.forEach(System.out::println);
 		
 		// 찾아보고 싶은 학생 이름을 studentToLookUp에 대입
 		while (!studentToLookUp.equals("quit")) {

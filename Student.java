@@ -105,6 +105,11 @@ public class Student {
 		return this.gpa;
 	}
 	
+	@Override
+	public String toString() {
+		return this.getName() + ", " + this.getConcentration() + ", " + this.getGrade() + ", " + this.getGPA();
+	}
+	
 	public Student(Scanner scanner, boolean onlyNameAndGPA) {
 		this.scanner = scanner;
 		this.name = this.handleNameIsEmptyError("student");
