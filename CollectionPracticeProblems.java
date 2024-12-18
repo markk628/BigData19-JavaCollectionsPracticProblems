@@ -32,7 +32,7 @@ public class CollectionPracticeProblems {
 			return Integer.parseInt(this.scanner.nextLine());
 		} catch (NumberFormatException e) {
 			System.out.print("enter a NUMBER: ");
-			return handleParseIntError();
+			return this.handleParseIntError();
 		}
 	}
 
@@ -42,7 +42,7 @@ public class CollectionPracticeProblems {
 			return Double.parseDouble(this.scanner.nextLine());
 		} catch (NumberFormatException e) {
 			System.out.print("enter a NUMBER: ");
-			return handleParseDoubleError();
+			return this.handleParseDoubleError();
 		}
 	}
 
@@ -58,10 +58,10 @@ public class CollectionPracticeProblems {
 	private int handleNegativeNumberError() {
 		System.out.print("Number: ");
 		try {
-			return returnIfNotSmallerThanNegativeOne(handleParseIntError());
+			return this.returnIfNotSmallerThanNegativeOne(this.handleParseIntError());
 		} catch (NegativeNumberException e) {
 			System.out.println(e.getMessage());
-			return handleNegativeNumberError();
+			return this.handleNegativeNumberError();
 		}
 	}
 
@@ -95,10 +95,10 @@ public class CollectionPracticeProblems {
 	private String handleNonGradeStringError(int number) {
 		try {
 			System.out.print("Grade " + number + ": ");
-			return returnStringIfIsAGrade(this.scanner.nextLine());
+			return this.returnStringIfIsAGrade(this.scanner.nextLine());
 		} catch (NotALetterGradeException e) {
 			System.out.println(e.getMessage());
-			return handleNonGradeStringError(number);
+			return this.handleNonGradeStringError(number);
 		}
 	}
 
@@ -115,10 +115,10 @@ public class CollectionPracticeProblems {
 	private String handleCountryAndPopulationFormatError() {
 		try {
 			System.out.print("Country and population: ");
-			return returnCountryAndPopulationIfFormatIsCorrect(this.scanner.nextLine());
+			return this.returnCountryAndPopulationIfFormatIsCorrect(this.scanner.nextLine());
 		} catch (WrongFormatException e) {
 			System.out.println(e.getMessage());
-			return handleCountryAndPopulationFormatError();
+			return this.handleCountryAndPopulationFormatError();
 		}
 	}
 
@@ -178,7 +178,7 @@ public class CollectionPracticeProblems {
 
 	private void printAll() {
 		for (int i = 1; i < 10; i++) {
-			printAnswer(i);
+			this.printAnswer(i);
 		}
 	}
 
@@ -187,14 +187,14 @@ public class CollectionPracticeProblems {
 				"Please enter the question number you'd like to test. If you'd like to test all questions, type \"all\": ");
 		String testingPreference = this.scanner.nextLine();
 		if (testingPreference.toLowerCase().equals("all")) {
-			printAll();
+			this.printAll();
 		} else {
 			try {
 				int number = Integer.parseInt(testingPreference);
-				printAnswer(number);
+				this.printAnswer(number);
 			} catch (NumberFormatException e) {
 				System.out.println("enter a number or \"all\"");
-				startProgram();
+				this.startProgram();
 			}
 		}
 		this.scanner.close();
@@ -208,12 +208,12 @@ public class CollectionPracticeProblems {
 		// 가장 큰정수를 대입받을 정수형 변수
 		int biggestNumber = 0;
 		// 입력한 정수들을 저장할 Vector형 변수
-		Vector<Integer> numbers = new Vector<Integer>();
+		Vector<Integer> numbers = new Vector<>();
 
 		// shouldContinue가 true면 반복하는 do while문
 		do {
 			// inputNumber에 입력한 정수를 대입
-			inputNumber = handleNegativeNumberError();
+			inputNumber = this.handleNegativeNumberError();
 			// inputNumber가 -1이면 shouldContinue에 false 대입
 			if (inputNumber == -1) {
 				break;
@@ -236,12 +236,12 @@ public class CollectionPracticeProblems {
 		// 입력한 정수를 대입받을 정수형 변수
 		int inputNumber;
 		// 입력한 정수들을 저장할 Vector형 변수
-		Vector<Integer> numbers = new Vector<Integer>();
+		Vector<Integer> numbers = new Vector<>();
 
 		// shouldContinue가 true면 반복하는 do while문
 		do {
 			// inputNumber에 입력한 정수를 대입
-			inputNumber = handleNegativeNumberError();
+			inputNumber = this.handleNegativeNumberError();
 			// inputNumber가 -1이면 shouldContinue에 false 대입
 			if (inputNumber == -1) {
 				break;
@@ -261,17 +261,17 @@ public class CollectionPracticeProblems {
 		// 입력한 점수를 대입받을 문자열 변수
 		String letterGrade;
 		// 입력한 점수들을 저장할 ArrayList 변수
-		ArrayList<String> letterGradesArrayList = new ArrayList<String>();
+		ArrayList<String> letterGradesArrayList = new ArrayList<>();
 		// GPA들의 합을 대입할 double 변수
 		double sumOfGPAs = 0;
 		// 6번 반복하면서 letterGradesArrayList에 입력한 점수를 저장
 		for (int i = 0; i < 6; i++) {
-			letterGrade = handleNonGradeStringError(i + 1);
+			letterGrade = this.handleNonGradeStringError(i + 1);
 			letterGradesArrayList.add(letterGrade);
 		}
 		// letterGradesArrayList에 저장된 정수 개수만큼 반복하면서 점수를 GPA로 변환한후 변환된 점수를 sumOfGPAs에 더한다
 		for (int i = 0; i < letterGradesArrayList.size(); i++) {
-			letterGradesArrayList.set(i, String.valueOf(returnLetterGradeGPAScore(letterGradesArrayList.get(i))));
+			letterGradesArrayList.set(i, String.valueOf(this.returnLetterGradeGPAScore(letterGradesArrayList.get(i))));
 			sumOfGPAs += Integer.parseInt(letterGradesArrayList.get(i));
 		}
 		// 평균 반환
@@ -288,12 +288,12 @@ public class CollectionPracticeProblems {
 		// 입력받은 나라 이름과 인구 문자열을 배열로 변환한후 대입받을 문자열 변수
 		String[] countryAndPopulation;
 		// 나라 이름과 인구를 저장할 HashMap 변수
-		HashMap<String, String> countriesAndPopulationDictionaryHashMap = new HashMap<String, String>();
+		HashMap<String, String> countriesAndPopulationDictionaryHashMap = new HashMap<>();
 
 		// shouldContinue가 true면 반복
 		while (true) {
 			// entry에 입력받은 나라 이름과 인구를 대입
-			entry = handleCountryAndPopulationFormatError();
+			entry = this.handleCountryAndPopulationFormatError();
 			// entry가 "quit"면 shouldContinue에 false를 대입
 			if (entry.equals("quit")) {
 				break;
@@ -330,7 +330,7 @@ public class CollectionPracticeProblems {
 		do {
 			System.out.print("Enter precipitation (enter 0 to terminate program): ");
 			// precipitation에 입력한 강수량을 대입
-			precipitation = handleParseIntError();
+			precipitation = this.handleParseIntError();
 			// precipitation이 0이면 while문을 끗낸다
 			if (precipitation == 0) {
 				break;
@@ -351,13 +351,13 @@ public class CollectionPracticeProblems {
 	 */
 	void problem5() {
 		// 입력한 한생들을 저장할 ArrayList 변수
-		ArrayList<Student> students = new ArrayList<Student>(4);
+		ArrayList<Student> students = new ArrayList<>(4);
 		// 찾아보고 싶은 학생 이름을 대입받을 문자열 변수
 		String studentToLookUp = "";
 
 		// 4번 반복하면서 Student instance를 만들고 만든 Student instance를 students에 저장
 		for (int i = 0; i < 4; i++) {
-			students.add(createStudent(i + 1, false));
+			students.add(this.createStudent(i + 1, false));
 		}
 		// 모든 학생 정보를 출력
 		students.forEach(
@@ -383,7 +383,7 @@ public class CollectionPracticeProblems {
 	 */
 	void problem6() {
 		// 도시들을 저장할 HashMap 변수
-		HashMap<String, Location> cities = new HashMap<String, Location>();
+		HashMap<String, Location> cities = new HashMap<>();
 		// 도시 class를 반복하면서 저장할 변수
 		Location location;
 		// 도시의 이름을 반복하면서 저장할 변수
@@ -392,7 +392,7 @@ public class CollectionPracticeProblems {
 		// 4번 반복하면서 location에 Location class를 대입하고 location.city와 location을 cities에 저장
 		System.out.println("Enter the name of the city to look up");
 		for (int i = 0; i < 4; i++) {
-			location = createLocation(i + 1);
+			location = this.createLocation(i + 1);
 			cities.put(location.getCity(), location);
 		}
 		// shouldContinue가 true면 반
@@ -421,7 +421,7 @@ public class CollectionPracticeProblems {
 	// 7. 이름과 학점(4.5만점)을 5개 입력받아 해시맵에 저장하고, 장학생 선발 기준을 입력 받아 장학생 명단을 출력하라.
 	String problem7() {
 		// 학생 이름과 학점을 저장할 HashMap 변수
-		HashMap<String, Double> students = new HashMap<String, Double>();
+		HashMap<String, Double> students = new HashMap<>();
 		// 학생을 반복하면서 만들때 대입받을 변수
 		Student student;
 		// 장학생 이름들을 합해서 출력할 문자열 변수
@@ -431,13 +431,13 @@ public class CollectionPracticeProblems {
 
 		// 5변 반복하면서 Student instance를 만들고 student에 대입후 students에 저장
 		for (int i = 0; i < 5; i++) {
-			student = createStudent(i + 1, true);
+			student = this.createStudent(i + 1, true);
 			students.put(student.getName(), student.getGPA());
 		}
 
 		// 장학생 선발 기준을 minimumGPA에 대입
 		System.out.print("Enter the minimum GPA to qualify for a scholarship: ");
-		minimumGPA = handleParseDoubleError();
+		minimumGPA = this.handleParseDoubleError();
 
 		// students에 저장된 student를 반복하면서 registeredStudents에 대입
 		for (Map.Entry<String, Double> registeredStudents : students.entrySet()) {
@@ -457,7 +457,7 @@ public class CollectionPracticeProblems {
 	// 포인트는 추가될 때마다 누적하여 저장된다.
 	void problem8() {
 		// 고객들의 이름과 점수를 저장할 HashMap 변수
-		HashMap<String, Integer> customers = new HashMap<String, Integer>();
+		HashMap<String, Integer> customers = new HashMap<>();
 		// 입력받은 고객의 이름과 점수 문자열을 이름과 점수로 나눠서 저장할 문자열 변수
 		String[] customerNameAndScoreList = new String[2];
 		// 입력받은 고객의 이름과 점수 문자열을 대입받을 문자열 변수
@@ -519,11 +519,11 @@ public class CollectionPracticeProblems {
 		// Country instance를 생성할때 대입받을 Country 변수
 		Country country;
 		// 나라와 수도를 변수로 가지고 있는 Country instance들을 저장할 Vector 변수
-		Vector<Country> countries = new Vector<Country>();
+		Vector<Country> countries = new Vector<>();
 		// 게임할때 입력받은 수도 이름을 대입받을 변수
 		String capitalName;
 		// 게임할때 이미 정답을 받은 나라인지 채크할때 쓰는 HashMap 변수 (수도를 맟추면 나라이름을 key로 true를 value로 저장)
-		HashMap<String, Boolean> correctlyAnsweredCountries = new HashMap<String, Boolean>();
+		HashMap<String, Boolean> correctlyAnsweredCountries = new HashMap<>();
 		// 입력한 나라가 countries에 이미 있는지 여부하는 불린
 		boolean isInCountries = false;
 
@@ -532,7 +532,7 @@ public class CollectionPracticeProblems {
 			System.out.println("There are currently " + countries.size() + " countries in the list");
 			System.out.print("Press 1 to add a country. Press 2 to start quiz. Press 3 to quit: ");
 			// 입력받은 정수를 switch로 처리
-			switch (handleParseIntError()) {
+			switch (this.handleParseIntError()) {
 			case 1:
 				while (true) {
 					// Country instance를 생성한후 country에 대입
@@ -586,7 +586,7 @@ public class CollectionPracticeProblems {
 					}
 				}
 				// 게임 끗난 후 correctlyAnsweredCountries 초기화
-				correctlyAnsweredCountries = new HashMap<String, Boolean>();
+				correctlyAnsweredCountries = new HashMap<>();
 				break;
 			case 3:
 				// "Terminating program" 출력후 프로그렘 종료
