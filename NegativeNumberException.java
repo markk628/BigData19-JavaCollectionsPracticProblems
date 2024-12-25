@@ -12,6 +12,8 @@ package CollectionPracticeProblems;
  * 2024.12.10		MARK KIM		FIRST CREATED
  */
 public class NegativeNumberException extends Exception {
+	private static final long serialVersionUID = 8552032900563722333L;
+
 	public NegativeNumberException(String message) {
 		super(message);
 	}

@@ -12,6 +12,8 @@ package CollectionPracticeProblems;
  * 2024.12.10		MARK KIM		FIRST CREATED
  */
 class WrongFormatException extends Exception {
+	private static final long serialVersionUID = -8717741554587401673L;
+
 	public WrongFormatException(String message) {
 		super(message);
 	}

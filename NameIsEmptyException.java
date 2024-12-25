@@ -12,6 +12,8 @@ package CollectionPracticeProblems;
  * 2024.12.10		MARK KIM		FIRST CREATED
  */
 public class NameIsEmptyException extends Exception {
+	private static final long serialVersionUID = 1848119116825768024L;
+
 	public NameIsEmptyException(String message) {
 		super(message);
 	}

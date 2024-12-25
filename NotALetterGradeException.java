@@ -12,6 +12,8 @@ package CollectionPracticeProblems;
  * 2024.12.10		MARK KIM		FIRST CREATED
  */
 class NotALetterGradeException extends Exception {
+	private static final long serialVersionUID = -6640720272278031788L;
+
 	public NotALetterGradeException(String message) {
 		super(message);
 	}
